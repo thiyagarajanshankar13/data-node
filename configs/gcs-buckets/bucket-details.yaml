@@ -10,3 +10,4 @@ buckets:
   - filedropservice@atsans.com
   reader:
   - ingestionservice@atsans.com
+  location: "australia-southeast1"
