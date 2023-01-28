@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - main
+    - develop
   pull_request:
 
 jobs:
@@ -48,4 +49,3 @@ jobs:
       run: terraform apply -auto-approve
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-        
