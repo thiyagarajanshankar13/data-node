@@ -1,0 +1,12 @@
+buckets:
+
+- bucket_name: sample_ingress
+  description: "This bucket holds sample data for the lake"
+  labels:
+  - sample
+  - ingress
+  - writeall
+  admins:
+  - filedropservice@atsans.com
+  reader:
+  - ingestionservice@atsans.com
