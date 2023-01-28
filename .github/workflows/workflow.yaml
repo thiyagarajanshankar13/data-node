@@ -25,6 +25,12 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
+    # Attempt login using Gcloud Credentials
+    - name: GCloud Login
+      run: gcloud auth application-default login
+      env:
+        GOOGLE_CLOUD_KEYFILE_JSON: ${{ secrets.GOOGLE_CREDENTIALS }}
+
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
