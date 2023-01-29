@@ -11,3 +11,6 @@ buckets:
   reader:
   - ingestionservice@atsans.com
   location: australia-southeast1
+
+- bucket_name: sample_egress
+  location: australia-southeast1
