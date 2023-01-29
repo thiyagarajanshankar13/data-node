@@ -43,3 +43,15 @@ resource "google_bigquery_dataset" "dataset_list" {
   default_table_expiration_ms = 3600000
 
 }
+
+resource "google_composer_environment" "data-workflow" {
+  provider = google-beta
+  name = "example-environment"
+  region = "australia-southeast1"
+
+  config {
+    software_config {
+      image_version = "composer-2.1.4-airflow-2.3.4"
+    }
+  }
+}
