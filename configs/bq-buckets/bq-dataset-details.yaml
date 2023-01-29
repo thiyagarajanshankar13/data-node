@@ -1,0 +1,12 @@
+datasets:
+
+- name: account dataset
+  description: "This bucket holds account data for the lake"
+  labels:
+  - sample
+  - ingress
+  admin:
+  - ingestionservice@atsans.com
+  reader:
+  - ingestionservice@atsans.com
+  location: australia-southeast1

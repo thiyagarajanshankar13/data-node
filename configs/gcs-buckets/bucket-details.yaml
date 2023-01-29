@@ -10,3 +10,8 @@ buckets:
   - filedropservice@atsans.com
   reader:
   - ingestionservice@atsans.com
+  location: australia-southeast1
+
+- bucket_name: sample_egress
+  description: "This bucket holds sample data for egress"
+  location: australia-southeast1
