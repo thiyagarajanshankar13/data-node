@@ -15,9 +15,9 @@ locals {
   bqdatasetlist = yamldecode(file("../configs/bq-buckets/bq-dataset-details.yaml"))["datasets"]
   bqdatasetitems = flatten([
     for ds, dataset in local.bqdatasetlist : {
-      datasetname     = dataset.name
+      datasetname        = dataset.name
       datasetdescription = dataset.description
-      datasetlocation = dataset.location
+      datasetlocation    = dataset.location
     }
   ])
 
