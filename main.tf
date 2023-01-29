@@ -13,7 +13,7 @@ locals {
   ])
 }
 
-resource "google_storage_bucket_list" "bucket" {
+resource "google_storage_bucket" "bucket_list" {
   for_each = {
     for bucket in local.bucketitems : "${bucket.bucketname}/${bucket.bucketlocation}" => bucket
   }
