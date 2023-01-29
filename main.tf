@@ -6,7 +6,7 @@ resource "google_storage_bucket" "bucket" {
 locals {
   bucketslist = yamldecode(file("./configs/gcs-buckets/bucket-details.yaml"))["buckets"]
   bucketitems = flatten([
-    for bucket in local.bucketslist : {
+    for bk, bucket in local.bucketslist : {
       bucketname = bucket.bucket_name
       bucketlocation = bucket.location
     }
