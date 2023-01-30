@@ -5,7 +5,7 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    bucket = "atsans-376108-tfstate"
+    bucket = "atsans-bllueprint-tfstate"
     prefix = "terraform/state"
   }
 }

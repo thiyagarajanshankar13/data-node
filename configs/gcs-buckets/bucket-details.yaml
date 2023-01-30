@@ -1,6 +1,6 @@
 buckets:
 
-- bucket_name: sample_ingress
+- bucket_name: atsans-blueprint-sample_ingress
   description: "This bucket holds sample data for the lake"
   labels:
   - sample
@@ -12,6 +12,6 @@ buckets:
   - ingestionservice@atsans.com
   location: australia-southeast1
 
-- bucket_name: sample_egress
+- bucket_name: atsans-blueprint-sample_egress
   description: "This bucket holds sample data for egress"
   location: australia-southeast1

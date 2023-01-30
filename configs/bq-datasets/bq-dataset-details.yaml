@@ -1,6 +1,6 @@
 datasets:
 
-- name: account dataset
+- name: atsans_blueprint_account_dataset
   description: "This bucket holds account data for the lake"
   labels:
   - sample

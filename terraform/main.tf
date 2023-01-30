@@ -12,7 +12,7 @@ locals {
     }
   ])
 
-  bqdatasetlist = yamldecode(file("../configs/bq-buckets/bq-dataset-details.yaml"))["datasets"]
+  bqdatasetlist = yamldecode(file("../configs/bq-datasets/bq-dataset-details.yaml"))["datasets"]
   bqdatasetitems = flatten([
     for ds, dataset in local.bqdatasetlist : {
       datasetname        = dataset.name
@@ -44,14 +44,52 @@ resource "google_bigquery_dataset" "dataset_list" {
 
 }
 
+resource "google_service_account" "composer_service_account" {
+  account_id   = "composerserviceaccount"
+  display_name = "A service account that only composer can interact with"
+}
+
+
+data "google_iam_policy" "composer_sa_iam" {
+  binding {
+    role = "roles/composer.worker"
+
+    members = [
+      google_service_account.composer_service_account.name
+    ]
+  }
+}
+
+data "google_iam_policy" "project_sa_iam" {
+  binding {
+    role = "roles/composer.ServiceAgentV2Ext"
+
+    members = [
+      "serviceAccount:service-1047648526865@cloudcomposer-accounts.iam.gserviceaccount.com",
+    ]
+  }
+}
+
+resource "google_service_account_iam_member" "composer_service_account" {
+  provider = google-beta
+  service_account_id = google_service_account.composer_service_account.name
+  role = "roles/composer.ServiceAgentV2Ext"
+  member = "serviceAccount:service-1047648526865@cloudcomposer-accounts.iam.gserviceaccount.com"
+}
+
 resource "google_composer_environment" "data-workflow" {
   provider = google-beta
-  name = "example-environment"
+  name = "dev-environment"
   region = "australia-southeast1"
+  project = var.project_id
 
   config {
     software_config {
       image_version = "composer-2.1.4-airflow-2.3.4"
     }
+    node_config {
+      service_account = google_service_account.composer_service_account.name
+    }
+  
   }
 }
